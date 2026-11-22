@@ -1,10 +1,8 @@
 ---
 title: "BBD Metagenome: Binning"
-author: "Your Name"
+author: "Jake Davis"
 date: "`r Sys.Date()`"
-output:
-  github_document:
-    html_preview: false
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -17,9 +15,30 @@ knitr::opts_hooks$set(engine = function(options) {
 })
 ```
 
-<!--
-Explain what this step does and why, and copy each command you ran into a
-bash chunk. R chunks run from the top of the repository.
--->
+## Genome Binning
 
-Binning of the assembled contigs into genomes with MetaBAT 2. Commands for this step were run in `metabat/`.
+Genome binning groups assembled metagenomic contigs into
+potential individual microbial genomes.
+
+For this workshop, I used the instructor-provided MetaBAT2
+binning results rather than rerunning the computational analysis.
+
+### Accessing the genome bins
+
+```{bash, eval=FALSE}
+cd ~/bbd-metagenome/metabat
+ln -s /pvol/data/mg/bbd/metabat/bins_bbd .
+```
+
+The symbolic link provides access to the precomputed bins
+without duplicating the underlying sequence files.
+
+### Interpretation
+
+The recovered bins represent candidate microbial genomes
+from the black band disease-associated community. However,
+binning alone does not establish genome completeness,
+contamination, or taxonomic identity.
+
+I used the supplied CheckM results to assess bin quality
+before proceeding with downstream analyses.

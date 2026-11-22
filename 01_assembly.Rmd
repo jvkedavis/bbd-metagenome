@@ -1,10 +1,8 @@
 ---
 title: "BBD Metagenome: Assembly"
-author: "Your Name"
+author: "Jake Davis"
 date: "`r Sys.Date()`"
-output:
-  github_document:
-    html_preview: false
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -17,9 +15,24 @@ knitr::opts_hooks$set(engine = function(options) {
 })
 ```
 
-<!--
-Explain what this step does and why, and copy each command you ran into a
-bash chunk. R chunks run from the top of the repository.
--->
+## Metagenome Assembly
 
-Assembly of the BBD nanopore reads with Flye. Commands for this step were run in `flye/`.
+This workshop investigates the microbial community associated
+with black band disease in the coral *Acropora hyacinthus*.
+
+Long-read metagenomic sequencing data were assembled using Flye.
+To avoid repeating the computationally intensive assembly, I
+used the instructor-provided Flye results.
+
+### Accessing the assembly
+
+```{bash, eval=FALSE}
+cd ~/bbd-metagenome/flye
+ln -s /pvol/data/mg/bbd/flye/bbd .
+```
+
+The symbolic link provides access to the precomputed assembly
+without duplicating the sequencing data.
+
+The resulting assembled contigs provide the starting point for
+genome binning and subsequent taxonomic and functional analyses.

@@ -1,10 +1,8 @@
 ---
 title: "BBD Metagenome: Taxonomy"
-author: "Your Name"
+author: "Jake Davis"
 date: "`r Sys.Date()`"
-output:
-  github_document:
-    html_preview: false
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -17,9 +15,31 @@ knitr::opts_hooks$set(engine = function(options) {
 })
 ```
 
-<!--
-Explain what this step does and why, and copy each command you ran into a
-bash chunk. R chunks run from the top of the repository.
--->
+## Taxonomic Classification
 
-Taxonomic classification of the most complete bins with GTDB-Tk. Commands for this step were run in `gtdbtk/`.
+I examined instructor-provided GTDB-Tk results to identify
+microorganisms recovered from the black band disease metagenome.
+The taxonomic classifications were generated using the Genome
+Taxonomy Database.
+
+```{bash, eval=FALSE}
+cd ~/bbd-metagenome
+head -n 8 /pvol/data/mg/bbd/gtdbtk/out/classify/gtdbtk.bac120.summary.tsv | cut -f 1,2
+```
+
+### Results and Interpretation
+
+The recovered genome bins represented multiple bacterial groups,
+including Cyanobacteria, Bacteroidota, Desulfobacterota, and
+Campylobacterota.
+
+Of particular interest, `metabat.26` was classified within
+*Roseofilum*, a cyanobacterial genus associated with black
+band disease. This bin also showed high estimated completeness
+(97.56%) and low contamination (0.67%).
+
+The identification of diverse bacterial groups is consistent
+with the complex microbial communities associated with black
+band disease. However, taxonomic classification alone cannot
+establish the ecological function or pathogenic role of each
+organism.

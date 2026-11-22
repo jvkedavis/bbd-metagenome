@@ -1,10 +1,8 @@
 ---
 title: "BBD Metagenome: Bin Quality"
-author: "Your Name"
+author: "Jake Davis"
 date: "`r Sys.Date()`"
-output:
-  github_document:
-    html_preview: false
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -17,9 +15,44 @@ knitr::opts_hooks$set(engine = function(options) {
 })
 ```
 
-<!--
-Explain what this step does and why, and copy each command you ran into a
-bash chunk. R chunks run from the top of the repository.
--->
+## Bin Quality Assessment
 
-Completeness and contamination of each bin, estimated with CheckM, and selection of the most complete bins for further analysis. Commands for this step were run in `checkm/`.
+I examined instructor-provided CheckM results to evaluate the
+completeness and contamination of genome bins recovered from
+a black band disease metagenome.
+
+The results were supplied through the MB5370 workshop resources,
+rather than generated through a new CheckM run.
+
+```{bash, eval=FALSE}
+cd ~/bbd-metagenome
+head -n 15 checkm/checkm_results_bbd.txt
+```
+
+### Results and Interpretation
+
+Two genome candidates showed particularly high estimated quality:
+
+- `contig_328`: 97.62% completeness and 1.64% contamination.
+- `metabat.26`: 97.56% completeness and 0.67% contamination.
+
+Both candidates have high estimated completeness and low
+contamination, making them suitable for further investigation.
+
+Other recovered bins showed substantially lower completeness,
+highlighting variation in genome recovery quality.
+
+### Selection for Downstream Analysis
+
+I selected genome candidates with estimated completeness
+greater than 15% for subsequent taxonomic and functional analysis.
+
+```{bash, eval=FALSE}
+cd ~/bbd-metagenome/checkm
+awk '$13>15{print $1}' checkm_results_bbd.txt > bbd_topbins.txt
+cat bbd_topbins.txt
+```
+
+This identified 14 genome candidates for further analysis.
+The 15% threshold is an initial screening criterion and
+does not mean that every selected genome is high quality.

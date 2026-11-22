@@ -1,10 +1,8 @@
 ---
 title: "BBD Metagenome: Gene Annotation"
-author: "Your Name"
+author: "Jake Davis"
 date: "`r Sys.Date()`"
-output:
-  github_document:
-    html_preview: false
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -17,9 +15,35 @@ knitr::opts_hooks$set(engine = function(options) {
 })
 ```
 
-<!--
-Explain what this step does and why, and copy each command you ran into a
-bash chunk. R chunks run from the top of the repository.
--->
+## Gene Annotation with Prokka
 
-Gene prediction and annotation of the most complete bins with Prokka. Commands for this step were run in `prokka/`.
+I used Prokka to predict and annotate genes in the bacterial genome bins recovered from the black band disease metagenome.
+
+Genome candidates with greater than 15% estimated completeness were selected for annotation.
+
+### Initial annotation
+
+I first tested Prokka on `metabat.5` to confirm the workflow was functioning correctly.
+
+```{bash, eval=FALSE}
+cd ~/bbd-metagenome/prokka
+bin=metabat.5
+prokka --cpus 2 --outdir "$bin" --prefix "$bin" "../metabat/bins_bbd/${bin}.fa"
+```
+
+Prokka completed successfully and generated gene annotation files, including protein sequences and predicted gene features.
+
+### Batch annotation
+
+I submitted the remaining selected bins for annotation using a Slurm batch script.
+
+```{bash, eval=FALSE}
+cd ~/bbd-metagenome/prokka
+sbatch run_prokka.sh
+```
+
+The batch analysis was submitted as Slurm job 730. The script skips bins that have already been successfully annotated.
+
+### Interpretation
+
+Gene annotation provides predictions of the genes and potential biological functions present in each genome. These predictions can be used to investigate microbial metabolism, although the presence of a gene does not confirm that it is actively expressed.
