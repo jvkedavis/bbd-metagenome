@@ -4,6 +4,11 @@ This project investigates the microbial community associated with black band dis
 
 The workflow covers assembly, binning, genome quality, taxonomy, gene annotation and metabolic pathway predictions. Among 14 selected genome candidates, `metabat.26` was classified as *Roseofilum*, a cyanobacterial genus associated with black band disease. These computational predictions do not directly establish metabolic activity.
 
+## Full report
+
+- [Combined Workshop 4 report (HTML)](index.html) — all six analysis stages in one document
+- [Combined report source (R Markdown)](index.Rmd)
+
 ## Analysis
 
 1. [Assembly](01_assembly.html)
@@ -26,5 +31,5 @@ Each step has a numbered RMarkdown file at the top of the repository and a folde
 | Gene annotation | `05_gene_annotation.Rmd` | `prokka/` | Prokka |
 | Metabolic pathways | `06_metabolic_pathways.Rmd` | `minpath/` | MinPath |
 
-`index.Rmd` can be knitted to combine all six sections into one HTML report. Individual HTML reports are linked above.
+The combined HTML report and six individual HTML reports are linked above. The R Markdown source files document the corresponding methods and analyses.
 
